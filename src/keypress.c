@@ -97,9 +97,12 @@ void win32KeyEvent(int key, MMKeyFlags flags)
 	}
 
 	/* Set the scan code for keyup */
-	if ( flags & KEYEVENTF_KEYUP ) {
-		scan |= 0x80;
-	}
+
+	// Fix "keyToggle doesn't release key"
+	// See: https://github.com/octalmage/robotjs/issues/252#issuecomment-299747467
+	// if ( flags & KEYEVENTF_KEYUP ) {
+	// 	scan |= 0x80;
+	// }
 
 	flags |= KEYEVENTF_SCANCODE;
 
